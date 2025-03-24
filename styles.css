@@ -30,12 +30,50 @@ border: none;
 color: white;
 font-weight: bold;
 }
+
+.btn-cian2 {
+    background-color: #57a4a4;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.btn-cian3 {
+    background-color: #60c5c5;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.btn-yellow {
+    background-color: #f1bc0f;
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
 .btn-cian:hover {
 background-color: #00cccc;
 }
+
 .header-cian {
 background-color: #008B8B; /* cian oscuro */
 color: white;
 padding: 15px 0;
 text-align: center;
+}
+
+.image-container {
+    max-height: 200px;
+    margin: 0 auto 20px auto; /* Centra la imagen */
+    display: block;
+  }
+
+.text-left {
+    text-align: left;
 }
