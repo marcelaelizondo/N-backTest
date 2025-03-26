@@ -20,6 +20,8 @@
     <div class="d-grid gap-3 col-6 mx-auto mt-4">
       <!-- Entrenamiento -->
       <button class="btn-yellow" onclick="selectTest('training')">Práctica</button>
+      <!-- Línea divisora -->
+      <hr class="divider" />
       <!-- N-back sin imágenes -->
       <button class="btn-cian2" onclick="selectTest('noImages')">Test 1</button>
       <!--N-back con imágenes -->
@@ -79,29 +81,35 @@
     const sets = {
       //Training
       training: [
+        //1 
         { word: "hormiga" },
-        { word: "gato" },
-        { word: "loro" },
-        { word: "pez" },
-        { word: "conejo" },
-        { word: "pez" },
+        //2
+        { word: "montaña" },
+        //3
+        { word: "llorar" },
+        //4
+        { word: "cable" }, //1° acierto
+        //5
+        { word: "escuela" },
+        { word: "cable" }, //1° acierto
+        { word: "montaña" }, //2° acierto
         { word: "hormiga" },
-        { word: "hamster" },
-        { word: "gato" },
-        { word: "serpiente" },
-        { word: "pez" },
-        { word: "tortuga" },
-        { word: "loro" },
-        { word: "erizo" },
-        { word: "gato" },
-        { word: "conejo" },
-        { word: "hurón" },
-        { word: "conejo" },
+        { word: "montaña" }, //2° acierto
+        { word: "llorar" },
         { word: "hormiga" },
-        { word: "gato" },
-        { word: "tortuga" },
-        { word: "pez" },
-        { word: "tortuga" }
+        { word: "escuela" }, //3° acierto
+        { word: "cable" },
+        { word: "escuela" }, //3° acierto
+        { word: "montaña" },
+        { word: "hormiga" }, //4° acierto
+        { word: "cable" },
+        { word: "hormiga" }, //4° acierto
+        { word: "escuela" },
+        { word: "llorar" },
+        { word: "montaña" }, //5° acierto
+        { word: "hormiga" },
+        { word: "montaña" }, //5° acierto
+        { word: "llorar" }
       ],
 
       noImages: [
