@@ -71,29 +71,36 @@
 
         <!-- Ejemplo Correcto -->
         <p>
-          Por ejemplo: Aparecerá en la pantalla las imágenes de:
-          <b
-            ><id style="color: rgb(0, 157, 255)">perro</id> ... gato ...
-            <id style="color: rgb(0, 157, 255)">perro</id></b
-          >
+          Por ejemplo: Aparecerá en la pantalla las imágenes:
+          
+            <div class="contenedor-imagenes">
+              <img src="img/bolos.png" alt="Imagen 1">
+              <h1> | </h1>
+              <img src="img/estrella.png" alt="Imagen 2">
+              <h1> | </h1>
+              <img src="img/bolos.png" alt="Imagen 3">
+            </div>
         </p>
         <p>
-          La imágen de un "perro" apareció hace 2 turnos, por lo que es
+          La imágen de un "bolos" apareció hace 2 turnos, por lo que es
           <b style="color: rgb(8, 192, 8)">correcto</b> y debes de dar clic en
           el
           <b style="color: rgb(8, 192, 8)">botón verde de "Acertar"</b>
         </p>
 
-        <!-- Ejemplo Correcto -->
+        <!-- Ejemplo InCorrecto -->
         <p>
           En cambio, si aparece en la pantalla las imágenes de:
-          <b
-            ><id style="color: rgb(0, 157, 255)">perro</id> ... gato ...
-            <id style="color: rgb(0, 157, 255)">casa</id></b
-          >
+              <div class="contenedor-imagenes">
+                <img src="img/bolos.png" alt="Imagen 1">
+                <h1> | </h1>
+                <img src="img/estrella.png" alt="Imagen 2">
+                <h1> | </h1>
+                <img src="img/avion.png" alt="Imagen 3">
+              </div>
         </p>
         <p>
-          La imagen de una "casa" que es la imagen actual
+          La imagen de un "avión" que es la imagen actual
           <b style="color: red">NO</b> apareció hace 2 turnos, por lo que es
           <b style="color: red">incorrecto</b> y
           <b style="color: red">NO</b> debes de dar clic en el botón verde de
@@ -146,48 +153,67 @@
 
     <script>
       const sets = {
-        //Training1
+
         training1: [
-          { word: "hormiga" },
-          { word: "montaña" },
-          { word: "llorar" },
-          { word: "cable" }, //1° acierto
-          { word: "escuela" },
-          { word: "cable" }, //1° acierto
-          { word: "montaña" }, //2° acierto
-          { word: "hormiga" },
-          { word: "montaña" }, //2° acierto
-          { word: "llorar" },
-          { word: "hormiga" },
-          { word: "escuela" }, //3° acierto
-          { word: "cable" },
-          { word: "escuela" }, //3° acierto
-          { word: "escuela" },
-          { word: "hormiga" }, //4° acierto
-          { word: "cable" },
-          { word: "hormiga" }, //4° acierto
-          { word: "escuela" },
-          { word: "llorar" },
-          { word: "montaña" }, //5° acierto
-          { word: "hormiga" },
-          { word: "montaña" }, //5° acierto
-          { word: "llorar" },
+          { img: "img/Couple 9.jpg", word: "pareja" },
+          { img: "img/Sidewalk 4.jpg", word: "camino" }, //1° Acierto
+          { img: "img/Doctor 8.jpg", word: "doctor" },
+          { img: "img/Sidewalk 4.jpg", word: "camino" }, //1° Acierto
+          { img: "img/Yoga 2.jpg", word: "yoga" }, // 2° Acierto
+          { img: "img/Timber 2.jpg", word: "madera" },
+          { img: "img/Yoga 2.jpg", word: "yoga" }, // 2° Acierto
+          { img: "img/Doctor 8.jpg", word: "doctor" },
+          { img: "img/Couple 9.jpg", word: "pareja" },
+          { img: "img/Sidewalk 4.jpg", word: "camino" },
+          { img: "img/Doctor 8.jpg", word: "doctor" },
+          { img: "img/Timber 2.jpg", word: "madera" },// 3° Acierto
+          { img: "img/Couple 9.jpg", word: "pareja" },
+          { img: "img/Timber 2.jpg", word: "madera" }, // 3° Acierto
+          { img: "img/Yoga 2.jpg", word: "yoga" }
         ],
 
+        training2: [
+          { img: "img/Cups 1.jpg", word: "tazas" },
+          { img: "img/Gazing 1.jpg", word: "vista" }, 
+          { img: "img/Path 1.jpg", word: "camino" }, // 1° Acierto
+          { img: "img/Yarn 3.jpg", word: "estambre" }, 
+          { img: "img/Path 1.jpg", word: "camino" }, // 1° Acierto
+          { img: "img/Monkey 3.jpg", word: "chango" },
+          { img: "img/Gazing 1.jpg", word: "vista" }, 
+          { img: "img/Yarn 3.jpg", word: "estambre" },
+          { img: "img/Cups 1.jpg", word: "tazas" }, // 2° Acierto
+          { img: "img/Gazing 1.jpg", word: "vista" }, 
+          { img: "img/Cups 1.jpg", word: "tazas" },// 2° Acierto
+          { img: "img/Path 1.jpg", word: "camino" }, 
+          { img: "img/Monkey 3.jpg", word: "chango" }, //3° Acierto
+          { img: "img/Yarn 3.jpg", word: "estambre" },
+          { img: "img/Monkey 3.jpg", word: "chango" }
+        ],
+
+
         control: [
-          { word: "gato" },
-          { word: "luz" }, //1° Acierto
-          { word: "fuego" },
-          { word: "luz" }, //1° Acierto
-          { word: "gato" },
-          { word: "fuego" }, //2° Acierto
-          { word: "luz" },
-          { word: "fuego" }, //2° Acierto
-          { word: "gato" },
-          { word: "botella" },
-          { word: "botón" },
-          { word: "casa" },
-          { word: "botón" },
+          { img: "img/Woods 1.jpg", word: "bosque" },
+          { img: "img/Desert 1.jpg", word: "desierto" },
+          { img: "img/Cold 1.jpg", word: "hielo" }, //1° Acierto
+          { img: "img/Ambulance 3.jpg", word: "ambulancia"},
+          { img: "img/Cold 1.jpg", word: "hielo" }, //1° Acierto
+          { img: "img/Bubble 2.jpg", word: "burbuja"},
+          { img: "img/Woods 1.jpg", word: "bosque" },
+          { img: "img/Ambulance 3.jpg", word: "ambulancia"}, //2° Acierto
+          { img: "img/Desert 1.jpg", word: "desierto" },
+          { img: "img/Ambulance 3.jpg", word: "ambulancia"}, //2° Acierto
+          { img: "img/Cold 1.jpg", word: "hielo" },
+          { img: "img/Woods 1.jpg", word: "bosque" }, //3° Acierto
+          { img: "img/Bubble 2.jpg", word: "burbuja"},
+          { img: "img/Woods 1.jpg", word: "bosque" }, //3° Acierto
+          { img: "img/Desert 1.jpg", word: "desierto" },
+          { img: "img/Cold 1.jpg", word: "hielo" },
+          { img: "img/Bubble 2.jpg", word: "burbuja"}, //4° Acierto
+          { img: "img/Ambulance 3.jpg", word: "ambulancia"},
+          { img: "img/Bubble 2.jpg", word: "burbuja"}, //4° Acierto
+          { img: "img/Desert 1.jpg", word: "desierto" }, //5° Acierto
+          { img: "img/Cold 1.jpg", word: "hielo" },
+          { img: "img/Desert 1.jpg", word: "desierto" }, //5° Acierto
         ],
 
         //High Arousal / High Valence
