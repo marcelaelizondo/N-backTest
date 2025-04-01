@@ -1,41 +1,110 @@
 .container {
-    text-align: center;
-    margin-top: 50px;
+  text-align: center;
+  margin-top: 50px;
 }
 .image-container {
-    max-width: 400px;
-    height: auto;
+  max-width: 500px;
+  height: auto;
 }
 .word {
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 20px;
 }
 .hidden {
-    display: none;
+  display: none;
 }
 .mensaje-cuadro {
-background-color: rgb(214, 245, 245);
-border: 2px solid #44a6a6;
-border-radius: 15px;
-padding: 15px;
-display: inline-block;
-margin-top: 15px;
-font-size: 18px;
+  background-color: rgb(214, 245, 245);
+  border: 2px solid #44a6a6;
+  border-radius: 15px;
+  padding: 15px;
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 18px;
 }
 
 .btn-cian {
-background-color: #008B8B;
-border: none;
-color: white;
-font-weight: bold;
+  background-color: #008b8b;
+  border: none;
+  color: white;
+  font-weight: bold;
 }
+
+.btn-cian2 {
+  background-color: #57a4a4;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+.btn-cian3 {
+  background-color: #60c5c5;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.btn-yellow {
+  background-color: #f1bc0f;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
 .btn-cian:hover {
-background-color: #00cccc;
+  background-color: #00cccc;
 }
+
 .header-cian {
-background-color: #008B8B; /* cian oscuro */
-color: white;
-padding: 15px 0;
-text-align: center;
+  background-color: #008b8b; /* cian oscuro */
+  color: white;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.btn-train {
+  background-color: #4b4b4b;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.image-container {
+  max-height: 300px;
+  margin: 0 auto 20px auto; /* Centra la imagen */
+  display: block;
+}
+
+.text-left {
+  text-align: left;
+}
+
+#testPage {
+  display: none; /* Initially hidden */
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Ensure it covers the viewport when shown */
+}
+
+.centered-div {
+  text-align: center;
+}
+
+.btn-acertar {
+  background-color: rgb(8, 192, 8);
+  border: 2px solid #44a6a6;
+  border-radius: 15px;
+  padding: 15px;
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 18px;
+  color: #fff;
 }
