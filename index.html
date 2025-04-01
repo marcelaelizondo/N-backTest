@@ -21,8 +21,11 @@
       <h2>Selecciona el tipo de prueba</h2>
       <div class="d-grid gap-3 col-6 mx-auto mt-4">
         <!-- Entrenamiento -->
-        <button class="btn-yellow" onclick="selectTest('training')">
-          Práctica
+        <button class="btn-train" onclick="selectTest('training1')">
+          Práctica 1
+        </button>
+        <button class="btn-train" onclick="selectTest('training2')">
+          Práctica 2
         </button>
         <!-- Línea divisora -->
         <hr class="divider" />
@@ -54,31 +57,28 @@
       <br />
       <!-- ALinear a la izquierda -->
       <div class="text-left">
+        <p>En esta prueba, se te mostrarán una serie de imágenes.</p>
         <p>
-          En esta prueba, se te mostrarán una serie de palabras durante N
-          segundos.
-        </p>
-        <p>
-          Cada palabra aparecerá en la pantalla por 2 segundos y desaparecerá,
+          Cada imagen aparecerá en la pantalla por 2 segundos y desaparecerá,
           seguido de una pausa en blanco de 1 segundo.
         </p>
-        <p>Deberás recordar la palabra que viste hace 2 turnos.</p>
+        <p>Deberás recordar la imagen que viste hace 2 turnos.</p>
         <p>
-          Cuando veas una palabra que se repite con la que viste hace dos
-          turnos, haz clic en el
+          Cuando veas una imagen que se repite con la que viste hace dos turnos,
+          haz clic en el
           <b style="color: rgb(8, 192, 8)">botón verde "Acertar"</b>.
         </p>
 
         <!-- Ejemplo Correcto -->
         <p>
-          Por ejemplo: Aparecerá en la pantalla
+          Por ejemplo: Aparecerá en la pantalla las imágenes de:
           <b
             ><id style="color: rgb(0, 157, 255)">perro</id> ... gato ...
             <id style="color: rgb(0, 157, 255)">perro</id></b
           >
         </p>
         <p>
-          "perro" apareció hace 2 turnos, por lo que es
+          La imágen de un "perro" apareció hace 2 turnos, por lo que es
           <b style="color: rgb(8, 192, 8)">correcto</b> y debes de dar clic en
           el
           <b style="color: rgb(8, 192, 8)">botón verde de "Acertar"</b>
@@ -86,15 +86,16 @@
 
         <!-- Ejemplo Correcto -->
         <p>
-          En cambio, si aparece en la pantalla
+          En cambio, si aparece en la pantalla las imágenes de:
           <b
             ><id style="color: rgb(0, 157, 255)">perro</id> ... gato ...
             <id style="color: rgb(0, 157, 255)">casa</id></b
           >
         </p>
         <p>
-          "casa" que es la palaba actual <b style="color: red">NO</b> apareció
-          hace 2 turnos, por lo que es <b style="color: red">incorrecto</b> y
+          La imagen de una "casa" que es la imagen actual
+          <b style="color: red">NO</b> apareció hace 2 turnos, por lo que es
+          <b style="color: red">incorrecto</b> y
           <b style="color: red">NO</b> debes de dar clic en el botón verde de
           "Acertar".
         </p>
@@ -146,7 +147,7 @@
     <script>
       const sets = {
         //Training
-        training: [
+        training1: [
           { word: "hormiga" },
           { word: "montaña" },
           { word: "llorar" },
@@ -236,6 +237,7 @@
           { img: "img/Tumor 1.jpg", word: "tumor" }, //5°acierto
           { img: "img/Miserable pose 3.jpg", word: "pose" },
         ],
+
         //Low Arousal / High Valence
         lowHigh: [
           { img: "img/Grass 1.jpg", word: "césped" },
@@ -245,9 +247,26 @@
 
         //Low Arousal / Low Valence
         lowLow: [
-          { img: "img/Snow 4.jpg", word: "nieve" },
           { img: "img/Dirt 5.jpg", word: "tierra" },
-          { img: "img/Snow 4.jpg", word: "nieve" },
+          { img: "img/Roofing 4.jpg", word: "techo" },
+          { img: "img/Storage 3.jpg", word: "barril" }, //1° acierto
+          { img: "img/Dirt 5.jpg", word: "tierra" },
+          { img: "img/Storage 3.jpg", word: "barril" }, //1° acierto
+          { img: "img/Garbage dump 8.jpg", word: "basura" }, //2° acierto
+          { img: "img/Roofing 4.jpg", word: "techo" },
+          { img: "img/Garbage dump 8.jpg", word: "basura" }, //2° acierto
+          { img: "img/Toilet 1.jpg", word: "bano" },
+          { img: "img/Storage 3.jpg", word: "barril" },
+          { img: "img/Roofing 4.jpg", word: "techo" }, //3° acierto
+          { img: "img/Toilet 1.jpg", word: "bano" },
+          { img: "img/Roofing 4.jpg", word: "techo" }, //3° acierto
+          { img: "img/Dirt 5.jpg", word: "tierra" }, //4° acierto
+          { img: "img/Toilet 1.jpg", word: "bano" },
+          { img: "img/Dirt 5.jpg", word: "tierra" }, //4° acierto
+          { img: "img/Garbage dump 8.jpg", word: "basua" },
+          { img: "img/Dirt 5.jpg", word: "tierra" }, //5° acierto
+          { img: "img/Storage 3.jpg", word: "barril" },
+          { img: "img/Storage 3.jpg", word: "barril" },
         ],
       };
 

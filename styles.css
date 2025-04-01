@@ -3,7 +3,7 @@
   margin-top: 50px;
 }
 .image-container {
-  max-width: 400px;
+  max-width: 500px;
   height: auto;
 }
 .word {
@@ -68,8 +68,17 @@
   text-align: center;
 }
 
+.btn-train {
+  background-color: #4b4b4b;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
 .image-container {
-  max-height: 200px;
+  max-height: 300px;
   margin: 0 auto 20px auto; /* Centra la imagen */
   display: block;
 }
