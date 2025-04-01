@@ -1,299 +1,385 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>N-Back Test</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>N-Back Test</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css">
-</head>
+  <body>
+    <header class="header-cian text-center">
+      <h1 class="m-0">N-Back Test</h1>
+    </header>
 
-<body>
-  <header class="header-cian text-center">
-    <h1 class="m-0">N-Back Test</h1>
-  </header>
-
-  <!-- Pantalla inicial con botones -->
-  <div id="menuPage" class="container text-center mt-5">
-    <h2>Selecciona el tipo de prueba</h2>
-    <div class="d-grid gap-3 col-6 mx-auto mt-4">
-      <!-- Entrenamiento -->
-      <button class="btn-yellow" onclick="selectTest('training')">Práctica</button>
-      <!-- Línea divisora -->
-      <hr class="divider" />
-      <!-- N-back sin imágenes -->
-      <button class="btn-cian2" onclick="selectTest('noImages')">Test 1</button>
-      <!--N-back con imágenes -->
-      <!-- High Valence y High Arousal  -->
-      <button class="btn-yellow" onclick="selectTest('highHigh')">Test 2</button>
-      <!-- Low Valence y High Arousal -->
-      <button class="btn-cian2" onclick="selectTest('highLow')">Test 3</button>
-      <!-- High Valence y Low Arousal -->
-      <button class="btn-yellow" onclick="selectTest('lowHigh')">Test 4</button>
-      <!-- Low Valence y Low Arousal -->
-      <button class="btn-cian2" onclick="selectTest('lowLow')">Test 5</button>
+    <!-- Pantalla inicial con botones -->
+    <div id="menuPage" class="container text-center mt-5">
+      <h2>Selecciona el tipo de prueba</h2>
+      <div class="d-grid gap-3 col-6 mx-auto mt-4">
+        <!-- Entrenamiento -->
+        <button class="btn-yellow" onclick="selectTest('training')">
+          Práctica
+        </button>
+        <!-- Línea divisora -->
+        <hr class="divider" />
+        <!-- N-back sin imágenes como baseline de la prueba-->
+        <button class="btn-cian2" onclick="selectTest('control')">
+          Test 1
+        </button>
+        <!--N-back con imágenes -->
+        <!-- High Valence y High Arousal  -->
+        <button class="btn-yellow" onclick="selectTest('highHigh')">
+          Test 2
+        </button>
+        <!-- Low Valence y High Arousal -->
+        <button class="btn-cian2" onclick="selectTest('highLow')">
+          Test 3
+        </button>
+        <!-- High Valence y Low Arousal -->
+        <button class="btn-yellow" onclick="selectTest('lowHigh')">
+          Test 4
+        </button>
+        <!-- Low Valence y Low Arousal -->
+        <button class="btn-cian2" onclick="selectTest('lowLow')">Test 5</button>
+      </div>
     </div>
-  </div>
 
-  <!-- Pantalla de instrucciones -->
-  <div id="instructionPage" class="container hidden mt-5">
-    <h2>Bienvenido a la prueba</h2>
-    <!-- ALinear a la izquierda -->
-    <div class="text-left">
-      <p>En esta prueba, se te mostrarán una serie de palabras.</p>
-      <p>Deberás recordar la palabra o imagen que viste hace dos turnos.</p>
-      <p>Por ejemplo A, B, C, cuando estás en "C" el elemento 2 posiciones atrás es A.</p>
-      <p>Cuando veas una palabra o imagen que se repite con la que viste hace dos turnos, haz clic en "Acertar".</p>
-      <p>Si aciertas, aparecerá un mensaje de Correcto, si no aciertas, aparecerá un mensaje de Incorrecto.</p>
-      <p>Haz clic en "Comenzar" para iniciar la prueba.</p>
-      <p>¡Suerte!</p>
+    <!-- Pantalla de instrucciones -->
+    <div id="instructionPage" class="container hidden mt-5">
+      <h2>Bienvenido a la prueba</h2>
+      <br />
+      <!-- ALinear a la izquierda -->
+      <div class="text-left">
+        <p>
+          En esta prueba, se te mostrarán una serie de palabras durante N
+          segundos.
+        </p>
+        <p>
+          Cada palabra aparecerá en la pantalla por 2 segundos y desaparecerá,
+          seguido de una pausa en blanco de 1 segundo.
+        </p>
+        <p>Deberás recordar la palabra que viste hace 2 turnos.</p>
+        <p>
+          Cuando veas una palabra que se repite con la que viste hace dos
+          turnos, haz clic en el
+          <b style="color: rgb(8, 192, 8)">botón verde "Acertar"</b>.
+        </p>
+
+        <!-- Ejemplo Correcto -->
+        <p>
+          Por ejemplo: Aparecerá en la pantalla
+          <b
+            ><id style="color: rgb(0, 157, 255)">perro</id> ... gato ...
+            <id style="color: rgb(0, 157, 255)">perro</id></b
+          >
+        </p>
+        <p>
+          "perro" apareció hace 2 turnos, por lo que es
+          <b style="color: rgb(8, 192, 8)">correcto</b> y debes de dar clic en
+          el
+          <b style="color: rgb(8, 192, 8)">botón verde de "Acertar"</b>
+        </p>
+
+        <!-- Ejemplo Correcto -->
+        <p>
+          En cambio, si aparece en la pantalla
+          <b
+            ><id style="color: rgb(0, 157, 255)">perro</id> ... gato ...
+            <id style="color: rgb(0, 157, 255)">casa</id></b
+          >
+        </p>
+        <p>
+          "casa" que es la palaba actual <b style="color: red">NO</b> apareció
+          hace 2 turnos, por lo que es <b style="color: red">incorrecto</b> y
+          <b style="color: red">NO</b> debes de dar clic en el botón verde de
+          "Acertar".
+        </p>
+
+        <p>
+          Haz clic en <b style="color: rgb(0, 157, 255)">"Comenzar"</b> para
+          iniciar la prueba.
+        </p>
+      </div>
+      <div class="text-center mt-6">
+        <button class="btn btn-primary" onclick="startTest()">Comenzar</button>
+      </div>
     </div>
-    <div class="text-center mt-4">
-      <button class="btn btn-primary" onclick="startTest()">Comenzar</button>
+
+    <!-- Pantalla del test -->
+    <div id="testPage" class="container hidden text-center mt-4">
+      <div class="centered-div">
+        <img
+          id="imageDisplay"
+          class="img-fluid image-container"
+          src=""
+          alt="Imagen"
+        />
+        <!--<p id="wordDisplay" class="fs-3"></p>-->
+        <button class="btn-acertar" onclick="checkMatch()">Acertar</button>
+        <p id="feedback" class="mt-3 fw-bold"></p>
+      </div>
     </div>
-  </div>
 
-  <!-- Pantalla del test -->
-  <div id="testPage" class="container hidden text-center mt-4">
-    <img id="imageDisplay" class="img-fluid image-container" src="" alt="Imagen" />
-    <p id="wordDisplay" class="fs-3"></p>
-    <button class="btn btn-success mt-3" onclick="checkMatch()">Acertar</button>
-    <p id="feedback" class="mt-3 fw-bold"></p>
-  </div>
+    <!-- Pantalla de gracias -->
+    <div id="thanksPage" class="container hidden text-center mt-5">
+      <h2>Gracias por terminar la prueba</h2>
+      <p>Avisa al moderador que has terminado.</p>
+      <button class="btn btn-warning mt-3" onclick="showResults()">
+        Acceso del moderador
+      </button>
+    </div>
 
-  <!-- Pantalla de gracias -->
-  <div id="thanksPage" class="container hidden text-center mt-5">
-    <h2>Gracias por terminar la prueba</h2>
-    <p>Avisa al moderador que has terminado.</p>
-    <button class="btn btn-warning mt-3" onclick="showResults()">Acceso del moderador</button>
-  </div>
+    <!-- Pantalla de resultados -->
+    <div id="resultPage" class="container hidden mt-5">
+      <h2>Resultados</h2>
+      <p id="finalScore" class="fw-bold"></p>
+      <p id="falsePos" class="fw-bold"></p>
+      <button class="btn btn-primary mt-3" onclick="restart()">
+        Volver al inicio
+      </button>
+    </div>
 
-  <!-- Pantalla de resultados -->
-  <div id="resultPage" class="container hidden mt-5">
-    <h2>Resultados</h2>
-    <p id="finalScore" class="fw-bold"></p>
-    <div id="detailResults"></div>
-    <button class="btn btn-primary mt-3" onclick="restart()">Volver al inicio</button>
-  </div>
+    <script>
+      const sets = {
+        //Training
+        training: [
+          { word: "hormiga" },
+          { word: "montaña" },
+          { word: "llorar" },
+          { word: "cable" }, //1° acierto
+          { word: "escuela" },
+          { word: "cable" }, //1° acierto
+          { word: "montaña" }, //2° acierto
+          { word: "hormiga" },
+          { word: "montaña" }, //2° acierto
+          { word: "llorar" },
+          { word: "hormiga" },
+          { word: "escuela" }, //3° acierto
+          { word: "cable" },
+          { word: "escuela" }, //3° acierto
+          { word: "escuela" },
+          { word: "hormiga" }, //4° acierto
+          { word: "cable" },
+          { word: "hormiga" }, //4° acierto
+          { word: "escuela" },
+          { word: "llorar" },
+          { word: "montaña" }, //5° acierto
+          { word: "hormiga" },
+          { word: "montaña" }, //5° acierto
+          { word: "llorar" },
+        ],
 
-  <script>
-    const sets = {
-      //Training
-      training: [
-        //1 
-        { word: "hormiga" },
-        //2
-        { word: "montaña" },
-        //3
-        { word: "llorar" },
-        //4
-        { word: "cable" }, //1° acierto
-        //5
-        { word: "escuela" },
-        { word: "cable" }, //1° acierto
-        { word: "montaña" }, //2° acierto
-        { word: "hormiga" },
-        { word: "montaña" }, //2° acierto
-        { word: "llorar" },
-        { word: "hormiga" },
-        { word: "escuela" }, //3° acierto
-        { word: "cable" },
-        { word: "escuela" }, //3° acierto
-        { word: "montaña" },
-        { word: "hormiga" }, //4° acierto
-        { word: "cable" },
-        { word: "hormiga" }, //4° acierto
-        { word: "escuela" },
-        { word: "llorar" },
-        { word: "montaña" }, //5° acierto
-        { word: "hormiga" },
-        { word: "montaña" }, //5° acierto
-        { word: "llorar" }
-      ],
+        control: [
+          { word: "gato" },
+          { word: "luz" }, //1° Acierto
+          { word: "fuego" },
+          { word: "luz" }, //1° Acierto
+          { word: "gato" },
+          { word: "fuego" }, //2° Acierto
+          { word: "luz" },
+          { word: "fuego" }, //2° Acierto
+          { word: "gato" },
+          { word: "botella" },
+          { word: "botón" },
+          { word: "casa" },
+          { word: "botón" },
+        ],
 
-      noImages: [
-        { word: "gato" },
-        { word: "luz" }, //1° Acierto
-        { word: "fuego" },
-        { word: "luz" }, //1° Acierto
-        { word: "gato" },
-        { word: "fuego" }, //2° Acierto
-        { word: "luz" },
-        { word: "fuego" }, //2° Acierto
-        { word: "gato" },
-        { word: "botella"},
-        { word: "botón"},
-        { word: "casa"},
-        { word: "botón"},
-      ],
+        //High Arousal / High Valence
+        highHigh: [
+          { img: "img/Skydiving 5.jpg", word: "aventura" },
+          { img: "img/Dog 6.jpg", word: "perro" }, //1° acierto
+          { img: "img/Rollercoaster 2.jpg", word: "diversión" },
+          { img: "img/Dog 6.jpg", word: "perro" }, //1° acierto
+          { img: "img/Dog 6.jpg", word: "perro" },
+          { img: "img/Penguins 2.jpg", word: "pingüino" }, //2° acierto
+          { img: "img/Rollercoaster 2.jpg", word: "diversión" },
+          { img: "img/Penguins 2.jpg", word: "pingüino" }, //2° acierto
+          { img: "img/Rainbow 2.jpg", word: "arcoiris" },
+          { img: "img/Rainbow 2.jpg", word: "arcoiris" }, //3° acierto
+          { img: "img/Skydiving 5.jpg", word: "aventura" },
+          { img: "img/Rainbow 2.jpg", word: "arcoiris" }, //3° acierto
+          { img: "img/Penguins 2.jpg", word: "pingüino" },
+          { img: "img/Rollercoaster 2.jpg", word: "diversión" },
+          { img: "img/Rainbow 2.jpg", word: "arcoiris" },
+          { img: "img/Skydiving 5.jpg", word: "aventura" }, //4° acierto
+          { img: "img/Penguins 2.jpg", word: "pingüino" },
+          { img: "img/Skydiving 5.jpg", word: "aventura" }, //4° acierto
+          { img: "img/Dog 6.jpg", word: "perro" },
+          { img: "img/Skydiving 5.jpg", word: "aventura" }, //5° acierto
+        ],
 
-      //High Arousal / High Valence
-      highHigh: [
-        { img: "img/Skydiving 5.jpg", word: "aventura" }, //imagen 1
-        { img: "img/Dog 6.jpg", word: "perro" },  //imagen 2 //1° acierto
-        { img: "img/Rollercoaster 2.jpg", word: "diversión" }, //imagen 3
-        { img: "img/Dog 6.jpg", word: "perro" }, //imagen 2 //1° acierto
-        { img: "img/Fireworks 2.jpg", word: "pirotecnia" }, //imagen 4
-        { img: "img/Penguins 2.jpg", word: "pingüino" },//imagen 5 //2° acierto
-        { img: "img/Skydiving 5.jpg", word: "aventura" },
-        { img: "img/Penguins 2.jpg", word: "pingüino" },//imagen 5 //2° acierto
-        { img: "img/Dog 6.jpg", word: "perro" },
-        { img: "img/Father 1.jpg", word: "papá" }, //3° acierto
-        { img: "img/Skydiving 5.jpg", word: "aventura" },
-        { img: "img/Father 1.jpg", word: "papá" }, //3° acierto
-        { img: "img/Penguins 2.jpg", word: "pingüino" },
-        { img: "img/Fireworks 2.jpg", word: "pirotecnia" },
-        { img: "img/Father 1.jpg", word: "papá" },
-        { img: "img/Skydiving 5.jpg", word: "aventura" },  //4° acierto
-        { img: "img/Penguins 2.jpg", word: "pingüino" },
-        { img: "img/Skydiving 5.jpg", word: "aventura" },  //4° acierto
-        { img: "img/Dog 6.jpg", word: "perro" }, //5° acierto
-        { img: "img/Skydiving 5.jpg", word: "aventura" },
-        { img: "img/Dog 6.jpg", word: "perro" }, //5° acierto
-        { img: "img/Fireworks 2.jpg", word: "pirotecnia" },
-        { img: "img/Penguins 2.jpg", word: "pingüino" }
-      ],
+        //High Arousal / Low Valence
+        highLow: [
+          { img: "img/Dog 26.jpg", word: "herida" }, //1° acierto
+          { img: "img/Tumor 1.jpg", word: "tumor" },
+          { img: "img/Dog 26.jpg", word: "herida" }, //1°acierto
+          { img: "img/Miserable pose 3.jpg", word: "pose" },
+          { img: "img/Fire 5.jpg", word: "fuego" },
+          { img: "img/Snake 4.jpg", word: "serpiente" },
+          { img: "img/Tumor 1.jpg", word: "tumor" },
+          { img: "img/Fire 5.jpg", word: "fuego" },
+          { img: "img/Miserable pose 3.jpg", word: "pose" }, //2° acierto
+          { img: "img/Dog 26.jpg", word: "herida" }, // 3° acierto
+          { img: "img/Miserable pose 3.jpg", word: "pose" }, //2° acierto
+          { img: "img/Dog 26.jpg", word: "herida" }, // 3° acierto
+          { img: "img/Snake 4.jpg", word: "serpiente" },
+          { img: "img/Snake 4.jpg", word: "serpiente" }, //4° acierto
+          { img: "img/Dog 26.jpg", word: "herida" },
+          { img: "img/Snake 4.jpg", word: "serpiente" }, //4° acierto
+          { img: "img/Tumor 1.jpg", word: "tumor" }, //5° acierto
+          { img: "img/Fire 5.jpg", word: "fuego" },
+          { img: "img/Tumor 1.jpg", word: "tumor" }, //5°acierto
+          { img: "img/Miserable pose 3.jpg", word: "pose" },
+        ],
+        //Low Arousal / High Valence
+        lowHigh: [
+          { img: "img/Grass 1.jpg", word: "césped" },
+          { img: "img/Eating 3.jpg", word: "comer" },
+          { img: "img/Grass 1.jpg", word: "césped" },
+        ],
 
-      //High Arousal / Low Valence
-      highLow: [
-        { img: "img/Dog 26.jpg", word: "herida" },
-        { img: "img/War 8.jpg", word: "guerra" },
-        { img: "img/Dog 26.jpg", word: "herida" },
+        //Low Arousal / Low Valence
+        lowLow: [
+          { img: "img/Snow 4.jpg", word: "nieve" },
+          { img: "img/Dirt 5.jpg", word: "tierra" },
+          { img: "img/Snow 4.jpg", word: "nieve" },
+        ],
+      };
 
-      ],
-      //Low Arousal / High Valence
-      lowHigh: [
-        { img: "img/Grass 1.jpg", word: "césped" },
-        { img: "img/Eating 3.jpg", word: "comer" },
-        { img: "img/Grass 1.jpg", word: "césped" }
-      ],
+      let items = [];
+      let index = 0;
+      let correctAnswers = 0; //True positives - aciertos normales
+      let falsePositives = 0; //False positives - errores por dar clic cuando no era
+      let totalRounds = 0;
+      let totalCorrectAnswers = 0;
+      let matchResults = [];
+      let intervalId = null;
+      let testActive = false;
 
-      //Low Arousal / Low Valence
-      lowLow: [
-        { img: "img/Snow 4.jpg", word: "nieve" },
-        { img: "img/Dirt 5.jpg", word: "tierra" },
-        { img: "img/Snow 4.jpg", word: "nieve" }
-      ]
-    };
-
-    let items = [];
-    let index = 0;
-    let correctAnswers = 0;
-    let totalRounds = 0;
-    let totalCorrectAnswers = 0;
-    let matchResults = [];
-    let intervalId = null;
-    let testActive = false;
-
-    function selectTest(type) {
-      items = sets[type];
-      totalRounds = items.length;
-      document.getElementById("menuPage").classList.add("hidden");
-      document.getElementById("instructionPage").classList.remove("hidden");
-    }
-
-    function startTest() {
-      document.getElementById("instructionPage").classList.add("hidden");
-      document.getElementById("testPage").classList.remove("hidden");
-
-      index = 0;
-      correctAnswers = 0;
-      totalCorrectAnswers = 0;
-      matchResults = [];
-      testActive = true;
-
-      showNextItem(); // mostrar el primer ítem
-    }
-
-    function showNextItem() {
-      if (index >= totalRounds) {
-        endTest();
-        return;
+      function selectTest(type) {
+        items = sets[type];
+        totalRounds = items.length;
+        document.getElementById("menuPage").classList.add("hidden");
+        document.getElementById("instructionPage").classList.remove("hidden");
       }
 
-      const currentItem = items[index];
+      function startTest() {
+        document.getElementById("instructionPage").classList.add("hidden");
+        document.getElementById("testPage").classList.remove("hidden");
+        const testPage = document.getElementById("testPage");
+        testPage.style.display = "flex"; // Apply flexbox when shown
 
-      // Mostrar imagen si existe
-      if (currentItem.img) {
-        document.getElementById("imageDisplay").src = currentItem.img;
-        document.getElementById("imageDisplay").style.display = "block";
-      } else {
-        document.getElementById("imageDisplay").style.display = "none";
+        index = 0;
+        correctAnswers = 0;
+        totalCorrectAnswers = 0;
+        matchResults = [];
+        testActive = true;
+
+        showNextItem(); // mostrar el primer ítem
       }
 
-      // Mostrar palabra y botón
-      document.getElementById("wordDisplay").textContent = currentItem.word;
-      document.getElementById("feedback").textContent = "";
-      document.querySelector("button.btn-success").style.display = "inline-block";
+      function showNextItem() {
+        if (index >= totalRounds) {
+          endTest();
+          return;
+        }
 
-      if (index >= 2 && currentItem.word === items[index - 2].word) {
-        totalCorrectAnswers++;
-        matchResults.push({
-          word: currentItem.word,
-          index: index,
-          userMatched: false
-        });
-      }
+        const currentItem = items[index];
 
-      index++;
+        // Mostrar imagen si existe
+        if (currentItem.img) {
+          document.getElementById("imageDisplay").src = currentItem.img;
+          document.getElementById("imageDisplay").style.display = "block";
+        } else {
+          document.getElementById("imageDisplay").style.display = "none";
+        }
 
-      // Mostrar el ítem por 3 segundos
-      setTimeout(() => {
-        // Ocultar todo por 1 segundo
-        document.getElementById("wordDisplay").textContent = "";
-        document.getElementById("imageDisplay").style.display = "none";
-        document.querySelector("button.btn-success").style.display = "none";
+        // Mostrar palabra y botón
+        //document.getElementById("wordDisplay").textContent = currentItem.word;
+        document.getElementById("feedback").textContent = "";
+        document.querySelector("button.btn-acertar").style.display =
+          "inline-block";
 
-        // Pausa de 1 segundo
+        //Calcula el total aciertos posibles del test. Esto se puede hacer un valor constante*
+        if (index >= 2 && currentItem.word === items[index - 2].word) {
+          totalCorrectAnswers++;
+          matchResults.push({
+            word: currentItem.word,
+            index: index,
+            userMatched: false,
+          });
+        }
+
+        index++;
+
+        // Mostrar el ítem por 3 segundos
         setTimeout(() => {
-          showNextItem();
-        }, 1000);
-      }, 2000);
-    }
+          // Ocultar todo por 1 segundo
+          //document.getElementById("wordDisplay").textContent = "";
+          document.getElementById("imageDisplay").style.display = "none";
+          document.querySelector("button.btn-acertar").style.display = "none";
 
-
-
-
-
-
-
-
-
-    function checkMatch() {
-      if (!testActive) return;
-      const feedback = document.getElementById("feedback");
-
-      if (index >= 3 && items[index - 1].word === items[index - 3].word) {
-        correctAnswers++;
-
-        const expected = matchResults.find(m => m.index === index - 1);
-        if (expected) expected.userMatched = true;
+          // Pausa de 1 segundo
+          setTimeout(() => {
+            showNextItem();
+          }, 1000);
+        }, 2000);
       }
-    }
 
-    function endTest() {
-      testActive = false;
-      document.getElementById("testPage").classList.add("hidden");
-      document.getElementById("thanksPage").classList.remove("hidden");
-    }
+      function checkMatch() {
+        // Restore to original color after 500ms (0.5 seconds)
+        setTimeout(() => {
+          button.style.backgroundColor = ""; // Resets to default Bootstrap color
+        }, 500);
 
-    function showResults() {
-      document.getElementById("thanksPage").classList.add("hidden");
-      document.getElementById("resultPage").classList.remove("hidden");
+        if (!testActive) return;
+        const feedback = document.getElementById("feedback");
 
-      document.getElementById("finalScore").textContent =
-        `Puntaje final: ${correctAnswers} de ${totalCorrectAnswers}`;
-    }
+        if (index >= 3 && items[index - 1].word === items[index - 3].word) {
+          correctAnswers++;
 
-    function restart() {
-      document.getElementById("resultPage").classList.add("hidden");
-      document.getElementById("menuPage").classList.remove("hidden");
-      document.getElementById("finalScore").textContent = "";
-      document.getElementById("detailResults").innerHTML = "";
-      document.getElementById("feedback").textContent = "";
-    }
-  </script>
-</body>
+          const expected = matchResults.find((m) => m.index === index - 1);
+          if (expected) expected.userMatched = true;
+        } else {
+          falsePositives++;
+        }
+      }
 
+      //Función para terminar el test y mostrar la pantalla de finalización
+      function endTest() {
+        testActive = false;
+        document.getElementById("testPage").classList.add("hidden");
+        const testPage = document.getElementById("testPage");
+        testPage.style.display = "none"; // Quitar flexbox when shown
+        document.getElementById("thanksPage").classList.remove("hidden");
+      }
+
+      //Función para mostrar los resultados obtenidos
+      function showResults() {
+        document.getElementById("thanksPage").classList.add("hidden");
+        document.getElementById("resultPage").classList.remove("hidden");
+
+        document.getElementById(
+          "finalScore"
+        ).textContent = `Número de aciertos: ${correctAnswers} de ${totalCorrectAnswers}`;
+        document.getElementById(
+          "falsePos"
+        ).textContent = `Número de errores: ${falsePositives}`;
+      }
+
+      //Función para reiniciar el test y regresar a la pantalla principal
+      function restart() {
+        document.getElementById("resultPage").classList.add("hidden");
+        document.getElementById("menuPage").classList.remove("hidden");
+        document.getElementById("finalScore").textContent = "";
+        document.getElementById("detailResults").innerHTML = "";
+        document.getElementById("feedback").textContent = "";
+      }
+    </script>
+  </body>
 </html>
